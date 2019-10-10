@@ -33,22 +33,13 @@
     function buildpass() {
       let p1 = document.getElementById('password1').value
       let p2 = document.getElementById('password2').value
-      let encrypted = CryptoJS.MD5(p1 + p2).toString().slice(0, 10).split('');
+      let encrypted = CryptoJS.MD5(p1 + p2).toString().slice(0, 11).split('');
       encrypted[0] = isNaN(encrypted[0]) ? encrypted[0].toUpperCase() : String.fromCharCode(65 + parseInt(encrypted[0], 10))
       encrypted[1] = isNaN(encrypted[1]) ? encrypted[1].toLowerCase() : String.fromCharCode(97 + parseInt(encrypted[1], 10))
       encrypted[7] = '-'
       encrypted[8] = isNaN(encrypted[8]) ? encrypted[8].charCodeAt(0) % 10 : encrypted[8]
       let res = encrypted.join('')
-      let rest = res
-      let c;
-      let cc = res.match(/(\d)\1+/g);
-      if (cc) {
-        for (var i = 0; i < cc.length; i++) {
-          c = cc[i].substring(0, 1);
-          rest = rest.replace(cc[i], c);
-        }
-        console.log(res, rest)
-      }
+   
     }
   </script>
 </body>
