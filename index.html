@@ -39,7 +39,15 @@
       encrypted[7] = '-'
       encrypted[8] = isNaN(encrypted[8]) ? encrypted[8].charCodeAt(0) % 10 : encrypted[8]
       let res = encrypted.join('')
-      console.log(res)
+      let rest = res
+      let c;
+      let cc = res.match(/(\d)\1+/g);
+      debugger
+      for (var i = 0; i < cc.length; i++) {
+        c = cc[i].substring(0, 1);
+        rest = rest.replace(cc[i], c);
+      }
+      console.log(rest)
     }
   </script>
 </body>
