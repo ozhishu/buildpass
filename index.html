@@ -42,12 +42,13 @@
       let rest = res
       let c;
       let cc = res.match(/(\d)\1+/g);
-      debugger
-      for (var i = 0; i < cc.length; i++) {
-        c = cc[i].substring(0, 1);
-        rest = rest.replace(cc[i], c);
+      if (cc) {
+        for (var i = 0; i < cc.length; i++) {
+          c = cc[i].substring(0, 1);
+          rest = rest.replace(cc[i], c);
+        }
+        console.log(res, rest)
       }
-      console.log(rest)
     }
   </script>
 </body>
