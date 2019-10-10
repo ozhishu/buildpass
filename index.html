@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
+  <script type="text/javascript" src="./crypto-js.min.js"></script>
   <style>
     body {
       margin: 0;
@@ -23,8 +24,24 @@
 
 <body>
   <main id="buildpass">
-    <input type="password" id="password" name="name" required minlength="4" maxlength="8" size="10">
+    <label>密码:<input type="password" id="password1"></label><br />
+    <label>密令:<input type="password" id="password2"></label><br />
+    <button type="button" id="buildpassbutton">Click Me!</button><br />
   </main>
+  <script type="text/javascript">
+    document.getElementById('buildpassbutton').addEventListener("click", buildpass)
+    function buildpass() {
+      let p1 = document.getElementById('password1').value
+      let p2 = document.getElementById('password2').value
+      let encrypted = CryptoJS.MD5(p1 + p2).toString().slice(0, 10).split('');
+      encrypted[0] = isNaN(encrypted[0]) ? encrypted[0].toUpperCase() : String.fromCharCode(65 + parseInt(encrypted[0], 10))
+      encrypted[1] = isNaN(encrypted[1]) ? encrypted[1].toLowerCase() : String.fromCharCode(97 + parseInt(encrypted[1], 10))
+      encrypted[7] = '-'
+      encrypted[8] = isNaN(encrypted[8]) ? encrypted[8].charCodeAt(0) % 10 : encrypted[8]
+      let res = encrypted.join('')
+      console.log(res)
+    }
+  </script>
 </body>
 
 </html>
