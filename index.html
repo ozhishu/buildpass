@@ -13,6 +13,7 @@
     body {
       margin: 0;
       padding: 0;
+      overflow: hidden;
     }
 
     #buildpass {
@@ -74,8 +75,8 @@
       font-size: 16px;
       color: #255c33;
       position: absolute;
-      top: 60px;
-      right: 0px;
+      top: -60px;
+      right: 20vw;
       width: 200px;
       height: 50px;
       background-color: rgb(158, 231, 238);
@@ -84,6 +85,30 @@
       display: flex;
       justify-content: center;
       align-items: center;
+    }
+
+    @keyframes movenotify {
+
+      from,
+      to {
+        transform: translate3d(0, 0, 0);
+      }
+
+      10% {
+        transform: translate3d(0, 20px, 0);
+      }
+
+      20% {
+        transform: translate3d(0, 80px, 0);
+      }
+
+      80% {
+        transform: translate3d(0, 80px, 0);
+      }
+
+      90% {
+        transform: translate3d(0, 20px, 0);
+      }
     }
   </style>
 </head>
@@ -97,12 +122,12 @@
     </section>
   </main>
   <div id="notify">
-    <span>通知内容</span>
+    <span>内容已拷贝至剪贴板</span>
   </div>
   <script type="text/javascript">
 
     document.getElementById('buildpassbutton').addEventListener("click", buildpass)
-    function buildpass() {
+    function buildpass(e) {
       let p1 = document.getElementById('password1').value
       let p2 = document.getElementById('password2').value
       let encrypted = CryptoJS.MD5(p1 + p2).toString().slice(0, 11).split('');
@@ -112,7 +137,12 @@
       encrypted[8] = isNaN(encrypted[8]) ? encrypted[8].charCodeAt(0) % 10 : encrypted[8]
       let res = quchong(encrypted.join(''))
       clipboard(res)
-      console.log(res)
+      document.getElementById('notify').style.animation = "movenotify 6s 1 linear both"
+      e.target.disabled = true
+      e.target.style.cssText = "background-color: #f7f7f7;border-color: #dcdee2;color: #c5c8ce;cursor: not-allowed;"
+      setTimeout(function () {
+        location.reload()
+      }, 6000)
     }
     function quchong(str) {
       let newStr = "";
