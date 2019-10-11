@@ -8,7 +8,7 @@
   <title>Document</title>
   <script type="text/javascript" src="./crypto-js.min.js"></script>
   <script type="text/javascript" src="./clipboard.min.js"></script>
-  <script type="text/javascript" src="./pnotify.js"></script>
+  <script type="text/javascript" src="./notify.js"></script>
   <style>
     body {
       margin: 0;
@@ -100,6 +100,7 @@
     <span>通知内容</span>
   </div>
   <script type="text/javascript">
+
     document.getElementById('buildpassbutton').addEventListener("click", buildpass)
     function buildpass() {
       let p1 = document.getElementById('password1').value
@@ -111,10 +112,6 @@
       encrypted[8] = isNaN(encrypted[8]) ? encrypted[8].charCodeAt(0) % 10 : encrypted[8]
       let res = quchong(encrypted.join(''))
       clipboard(res)
-      PNotify.success({
-        title: 'Success!',
-        text: 'That thing that you were trying to do worked.'
-      });
       console.log(res)
     }
     function quchong(str) {
