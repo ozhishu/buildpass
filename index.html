@@ -7,59 +7,61 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
   <script type="text/javascript" src="./crypto-js.min.js"></script>
+  <script type="text/javascript" src="./clipboard.min.js"></script>
+  <script type="text/javascript" src="./pnotify.js"></script>
   <style>
     body {
       margin: 0;
       padding: 0;
     }
+
     #buildpass {
-      color:black;
+      color: black;
       margin: 0 auto;
       width: 61vw;
       height: 100vh;
       background-color: antiquewhite;
       display: flex;
-      align-items: center; /*定义body的元素垂直居中*/
-      justify-content: center; /*定义body的里的元素水平居中*/
+      align-items: center;
+      /*定义body的元素垂直居中*/
+      justify-content: center;
+      /*定义body的里的元素水平居中*/
     }
+
     label {
       font-family: 'Arial,x-locale-body,sans-serif';
     }
+
     input {
       padding: 7px 0px;
       margin-bottom: 20px;
       border: 1px solid #ccc;
-      border-radius: 3px; 
-      padding-left:5px;
-      box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
-      transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+      border-radius: 3px;
+      padding-left: 5px;
+      box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+      transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
     }
-    input:focus{
-      border-color: #66afe9; 
-      outline: 0; 
-      box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6)             
+
+    input:focus {
+      border-color: #66afe9;
+      outline: 0;
+      box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, .6)
     }
+
     button {
       float: right;
       cursor: pointer;
       font-size: 16px;
       font-weight: bold;
-      text-align: center;
-      display: inline-block;
-      letter-spacing: -0.2px;
       line-height: 1;
-      width: auto;
       background-color: rgb(255, 65, 92);
       color: rgb(255, 255, 255);
       padding: 10px 24px;
       border-radius: 30px;
-      outline: none;
       transition: all 0.5s ease 0s;
-      border-width: 1px;
-      border-style: solid;
-      border-color: rgb(255, 65, 92);
-      border-image: initial;
+      border: 1px solid rgb(255, 65, 92);
     }
+
     button:hover {
       background-color: rgb(255, 112, 133);
       border-width: 1px;
@@ -67,17 +69,36 @@
       border-color: rgb(255, 112, 133);
       border-image: initial;
     }
+
+    #notify {
+      font-size: 16px;
+      color: #255c33;
+      position: absolute;
+      top: 60px;
+      right: 0px;
+      width: 200px;
+      height: 50px;
+      background-color: rgb(158, 231, 238);
+      border: 1px solid rgb(228, 226, 226);
+      border-radius: 8px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
   </style>
 </head>
 
 <body>
   <main id="buildpass">
     <section>
-      <label>密码:</label>  <input type="password" id="password1"><br />
-      <label>密令:</label>  <input type="password" id="password2"><br />
-      <button type="button" id="buildpassbutton">确定</button><br />
+      <label>密码:</label> <input type="password" id="password1"><br />
+      <label>密令:</label> <input type="password" id="password2"><br />
+      <button type="button" id="buildpassbutton">复制</button><br />
     </section>
   </main>
+  <div id="notify">
+    <span>通知内容</span>
+  </div>
   <script type="text/javascript">
     document.getElementById('buildpassbutton').addEventListener("click", buildpass)
     function buildpass() {
@@ -89,33 +110,32 @@
       encrypted[7] = '-'
       encrypted[8] = isNaN(encrypted[8]) ? encrypted[8].charCodeAt(0) % 10 : encrypted[8]
       let res = quchong(encrypted.join(''))
-      const n = new Notification('状态更新提醒',{
-        body: '密码已复制到粘贴板'
-      })
-      setTimeout(function() {
-          n.close();
-      }, 3000);
+      clipboard(res)
+      PNotify.success({
+        title: 'Success!',
+        text: 'That thing that you were trying to do worked.'
+      });
       console.log(res)
     }
-    function quchong(str){
-      let newStr="";
-      for(let i=0;i<str.length;i++){
-        if(newStr.indexOf(str[i])===-1){
-          newStr+=str[i];
-        }else {
-          newStr+=String.fromCharCode(str[i].charCodeAt(0)+1);
+    function quchong(str) {
+      let newStr = "";
+      for (let i = 0; i < str.length; i++) {
+        if (newStr.indexOf(str[i]) === -1) {
+          newStr += str[i];
+        } else {
+          newStr += String.fromCharCode(str[i].charCodeAt(0) + 1);
         }
       }
       return newStr;
     }
-    Notification.requestPermission().then(function(permission) {
-      if(permission === 'granted'){
-          console.log('用户允许通知');
-      }else if(permission === 'denied'){
-          console.log('用户拒绝通知');
-      }
-    });
-    </script>
+    function clipboard(res) {
+      new ClipboardJS('#buildpassbutton', {
+        text: function () {
+          return res
+        }
+      });
+    }
+  </script>
 </body>
 
 </html>
