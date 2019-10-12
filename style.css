@@ -1,3 +1,11 @@
+ 
+html {
+  font-size: 4.267vw;
+  font-family: 'Arial,x-locale-body,sans-serif';
+}
+@media screen and (min-width:720px) {
+  html { font-size: 1.333vw;}
+}
  body {
       margin: 0;
       padding: 0;
@@ -12,16 +20,11 @@
       background-color: antiquewhite;
       display: flex;
       align-items: center;
-      /*定义body的元素垂直居中*/
       justify-content: center;
-      /*定义body的里的元素水平居中*/
-    }
-
-    label {
-      font-family: 'Arial,x-locale-body,sans-serif';
     }
 
     input {
+      width: 40vw;
       padding: 7px 0px;
       margin-bottom: 20px;
       border: 1px solid #ccc;
@@ -40,8 +43,6 @@
     button {
       float: right;
       cursor: pointer;
-      font-size: 16px;
-      font-weight: bold;
       line-height: 1;
       background-color: rgb(255, 65, 92);
       color: rgb(255, 255, 255);
@@ -60,7 +61,6 @@
     }
 
     #notify {
-      font-size: 16px;
       color: #255c33;
       position: absolute;
       top: -60px;
