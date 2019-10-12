@@ -10,7 +10,6 @@
     encrypted[8] = isNaN(encrypted[8]) ? encrypted[8].charCodeAt(0) % 10 : encrypted[8]
     let res = quchong(encrypted.join(''))
     clipboard(res)
-    console.log(res)
     document.getElementById('notify').style.animation = "movenotify 6s 1 linear both"
     e.target.disabled = true
     e.target.style.cssText = "background-color: #f7f7f7;border-color: #dcdee2;color: #c5c8ce;cursor: not-allowed;"
