@@ -1,0 +1,8 @@
+{
+  "short_name": "buildpass",
+  "name": "buildpass",
+  "description": "An offline-capable buildpass app, using localStorage and ServiceWorker",
+  "display": "standalone",
+  "orientation": "portrait",
+  "start_url": "index.html"
+}

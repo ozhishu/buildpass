@@ -5,12 +5,24 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="application-name" content="buildpass" />
   <link rel="shortcut icon" href="./style/icon.ico">
   <title>Buildpass</title>
   <script type="text/javascript" src="./js/crypto-js.min.js"></script>
   <script type="text/javascript" src="./js/clipboard.min.js"></script>
   <link href="./style/style.css" rel="stylesheet" type="text/css" />
+  <link rel="manifest" href="manifest.json">
 </head>
+<script type="application/javascript">
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('service-worker.js').then(function (registration) {
+    }).catch(function (error) {
+      console.log('Service worker registration failed:', error);
+    });
+  } else {
+    console.log('Service workers are not supported.');
+  }
+</script>
 
 <body>
   <main id="buildpass">
