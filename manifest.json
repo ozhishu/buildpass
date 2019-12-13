@@ -9,7 +9,7 @@
   "background_color": "#aaaaff",
   "icons": [
     {
-      "src": "/style/key.png",
+      "src": "/buildpass/style/key.png",
       "sizes": "225x225",
       "type": "image/png"
     }
