@@ -3,13 +3,13 @@
   "short_name": "buildpass",
   "description": "An offline-capable buildpass app, using localStorage and ServiceWorker",
   "display": "standalone",
-  "start_url": "/",
+  "start_url": "/buildpass",
   "orientation": "portrait",
   "theme_color": "#8888ff",
   "background_color": "#aaaaff",
   "icons": [
     {
-      "src": "/buildpass/style/key.png",
+      "src": "/style/key.png",
       "sizes": "225x225",
       "type": "image/png"
     }
