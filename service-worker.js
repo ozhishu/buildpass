@@ -6,7 +6,6 @@
   var staticCacheName = 'pwa-v' + version;
 
   var filesToCache = [
-    '/buildpass',
     '/buildpass/index.html',
     '/buildpass/style/style.css',
     '/buildpass/style/icon.ico',
