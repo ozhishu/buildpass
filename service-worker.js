@@ -6,13 +6,13 @@
   var staticCacheName = 'pwa-v' + version;
 
   var filesToCache = [
-    '/index.html',
-    '/style/style.css',
-    '/style/icon.ico',
-    '/style/key.png',
-    '/js/clipboard.min.js',
-    '/js/index.js',
-    '/js/crypto-js.min.js'
+    '/buildpass/index.html',
+    '/buildpass/style/style.css',
+    '/buildpass/style/icon.ico',
+    '/buildpass/style/key.png',
+    '/buildpass/js/clipboard.min.js',
+    '/buildpass/js/index.js',
+    '/buildpass/js/crypto-js.min.js'
   ];
 
   self.addEventListener('install', function (event) {
