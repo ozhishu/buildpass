@@ -5,8 +5,8 @@
   "display": "standalone",
   "start_url": "/buildpass",
   "orientation": "portrait",
-  "theme_color": "#8888ff",
-  "background_color": "#aaaaff",
+  "theme_color": "antiquewhite",
+  "background_color": "antiquewhite",
   "icons": [
     {
       "src": "/buildpass/style/keyicon.png",
