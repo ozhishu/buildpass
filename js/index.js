@@ -28,11 +28,13 @@
     }
     return newStr;
   }
+  let ins = null
   function clipboard(res) {
-    new ClipboardJS('#buildpassbutton', {
+   ins = new ClipboardJS('#buildpassbutton', {
       text: function () {
         return res
       }
     });
   }
+  setInterval(()=> { ins && ins.destroy(); }, 60 * 1000)
 })()
